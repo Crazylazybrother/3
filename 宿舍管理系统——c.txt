@@ -1,0 +1,407 @@
+#include <stdio.h> 
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#define M 10000
+
+int T=1;   //总人数； 
+
+struct Student  //学生的结构体；
+{
+      char S_name[20];
+	  char S_number[20];
+	  int S_Dormitory;
+}st[M];
+
+void judge(Student S,int t)               //查询学号是否重复； 
+{
+	//if(t>=2)
+		for(int i=1;i<=T-1;i++)
+	 if(strcmp(st[i].S_number,st[t].S_number)==0)
+	  {
+	 	printf("学号输入错误,请重新输入\n");
+	 	printf("输入学号：");
+		scanf("%s",&st[i].S_number); 
+	  }	
+} 
+
+void Add()                           //添加学生信息； 
+{
+	 char P='y';
+	 while(P=='y')
+	 {
+	 	printf("请输入学生姓名：");
+	 scanf("%s",&st[T].S_name);	
+	 getchar();
+	 
+	 printf("请输入学生学号：");
+	 scanf("%s",&st[T].S_number);
+	 judge(st[T],T);
+	 getchar();
+	 
+	 printf("请输入宿舍号："); 
+	 scanf("%d",&st[T].S_Dormitory);
+	 getchar();
+	 
+	 T++;
+	 printf("是否要继续添加：y/n  \n");
+	 scanf("%c",&P);
+	 getchar();
+	 }
+}
+
+void Modify()            //修改信息 
+{
+	int flag=0;
+	char number[20]; 
+	printf("输入学生学号：");
+	scanf("%s",&number);
+	getchar();
+	for(int i=1;i<T;i++){
+		if(strcmp(st[i].S_number,number)==0)
+	    flag=i;
+	}
+	 
+	 if(!flag)
+	   printf("你要修改的学生不在此列\n");
+	 else
+	 {
+	 	printf("新信息如下：\n");
+	 	
+	 	printf("请输入学生姓名：");
+	    scanf("%s",&st[flag].S_name);	
+	    getchar();
+	 
+	    printf("请输入学生学号：");
+	    scanf("%s",&st[flag].S_number);
+	    getchar();
+	 
+	    printf("请输入宿舍号："); 
+	    scanf("%d",&st[flag].S_Dormitory);
+	    getchar();
+	 }
+	 printf("\n");
+}
+
+void Delete()            //删除信息 
+{
+	int flag=0;
+	char number[20];
+	printf("请输入你要删除学生的学号：");
+	scanf("%s",&number);
+	getchar();
+	for(int i=1;i<=T;i++)
+	  if(strcmp(st[i].S_number,number)==0)
+	    flag=i; 
+	if(!flag)
+	   printf("你要删除的学生不在此列\n"); 
+	else
+	{
+		for(int i=flag;i<T;i++)
+		{
+			int j=i+1;
+			strcpy(st[i].S_name,st[j].S_name);
+			strcpy(st[i].S_number,st[j].S_number);
+			st[i].S_Dormitory=st[j].S_Dormitory;
+		}
+		T--;
+		printf("删除成功！\n");
+	 } 
+}
+
+void Nsort()                //按姓名排序； 
+{
+	char name[20];
+	char number[20];
+	int t;
+	
+	for(int i=1;i<T;i++)
+	{
+		for(int j=i;j<T;j++)
+		  {
+		  	if(strcmp(st[i].S_name,st[j].S_name)>0)
+		  	{
+		  	   strcpy(name,st[i].S_name);
+			   strcpy(number,st[i].S_number);
+			   t=st[i].S_Dormitory;
+			   
+			   strcpy(st[i].S_name,st[j].S_name);
+			   strcpy(st[i].S_number,st[j].S_number);
+			   st[i].S_Dormitory=st[j].S_Dormitory;	
+			   
+			   strcpy(st[j].S_name,name);
+			   strcpy(st[j].S_number,number);
+			   st[j].S_Dormitory=t;
+			}
+		  }
+	}
+}
+
+void Dsort()           //按宿舍排序； 
+{
+	char name[20];
+	char number[20];
+	int t;
+	
+	for(int i=1;i<T;i++)
+	{
+		for(int j=i;j<T;j++)
+		  {
+		  	if(st[i].S_Dormitory>st[j].S_Dormitory)
+		  	{
+		  	   strcpy(name,st[i].S_name);
+			   strcpy(number,st[i].S_number);
+			   t=st[i].S_Dormitory;
+			   
+			   strcpy(st[i].S_name,st[j].S_name);
+			   strcpy(st[i].S_number,st[j].S_number);
+			   st[i].S_Dormitory=st[j].S_Dormitory;	
+			   
+			   strcpy(st[j].S_name,name);
+			   strcpy(st[j].S_number,number);
+			   st[j].S_Dormitory=t;
+			}
+		  }
+	}
+}
+
+void NUsort()              //按学号排序； 
+{
+	char name[20];
+	char number[20];
+	int t;
+	
+	for(int i=1;i<T;i++)
+	{
+		for(int j=i;j<T;j++)
+		  {
+		  	if(strcmp(st[i].S_number,st[j].S_number)>0)
+		  	{
+		  	   strcpy(name,st[i].S_name);
+			   strcpy(number,st[i].S_number);
+			   t=st[i].S_Dormitory;
+			   
+			   strcpy(st[i].S_name,st[j].S_name);
+			   strcpy(st[i].S_number,st[j].S_number);
+			   st[i].S_Dormitory=st[j].S_Dormitory;	
+			   
+			   strcpy(st[j].S_name,name);
+			   strcpy(st[j].S_number,number);
+			   st[j].S_Dormitory=t;
+			}
+		  }
+	}
+}
+
+
+void NInquire()      //按姓名查找（二分） 
+{
+	int low=1;
+	int high=T-1; 
+	int flag=0;
+	int mid;
+	char name[20];
+	Nsort();       //按姓名从小到大排序； 
+	printf("请输入要查找学生的姓名：");
+	scanf("%s",&name);
+	getchar(); 
+	
+	printf("学生姓名         学生学号            学生宿舍\n");
+	if(strcmp(name,st[low].S_name)>=0&&strcmp(name,st[high].S_name)<=0)
+	{
+		while(low<=high)
+		{
+			mid=(low+high)/2;
+			if(strcmp(name,st[mid].S_name)==0)
+			{
+				printf("%-20s%-20s%-5d",st[mid].S_name,st[mid].S_number,st[mid].S_Dormitory);
+				printf("\n");
+				flag=1;
+				break;
+			}
+			else if(strcmp(name,st[mid].S_name)>0)
+			     low=mid+1;
+			else high=mid-1;  
+		}
+	}
+	if(!flag)
+	{
+		printf("查寻失败，列表中没有该学生的信息\n");
+	}
+}
+
+void DInquire()      //按宿舍查找（二分）； 
+{
+	int low=1;
+	int high=T-1; 
+	int flag=0;
+	int mid;
+	int Dormitory;
+	Dsort();               //按宿舍重小到大排序； 
+	
+	printf("请输入要查询学生的宿舍号："); 
+	scanf("%d",&Dormitory);
+	
+	printf("学生姓名         学生学号            学生宿舍\n");
+	if(Dormitory>=st[low].S_Dormitory&&Dormitory<=st[high].S_Dormitory)
+	{
+		while(low<=high)
+		{
+			mid=(low+high)/2;
+			if(Dormitory==st[mid].S_Dormitory)
+			{
+				printf("%-20s%-20s%-5d",st[mid].S_name,st[mid].S_number,st[mid].S_Dormitory);
+				printf("\n");
+				flag=1;
+				break;
+			}
+			else if(Dormitory>st[mid].S_Dormitory)
+			     low=mid+1;
+			else high=mid-1;  
+		}
+	}
+	if(!flag)
+	{
+		printf("查寻失败，列表中没有该学生的信息\n");
+	}
+}
+
+void NUInquire()
+{
+	int low=1;
+	int high=T-1; 
+	int flag=0;
+	int mid;
+	char number[20];
+	NUsort();       //按学号从小到大排序； 
+	
+	printf("请输入要查找学生的学号：");
+	scanf("%s",&number);
+	getchar(); 
+	
+	printf("学生姓名         学生学号            学生宿舍\n");
+	if(strcmp(number,st[low].S_number)>=0&&strcmp(number,st[high].S_number)<=0)
+	{
+		while(low<=high)
+		{
+			mid=(low+high)/2;
+			if(strcmp(number,st[mid].S_number)==0)
+			{
+				printf("%-20s%-20s%-5d",st[mid].S_name,st[mid].S_number,st[mid].S_Dormitory);
+				printf("\n");
+				flag=1;
+				break;
+			}
+			else if(strcmp(number,st[mid].S_number)>0)
+			     low=mid+1;
+			else high=mid-1;  
+		}
+	}
+	if(!flag)
+	{
+		printf("查寻失败，列表中没有该学生的信息\n");
+	}
+}
+
+void Show()
+{
+	printf("全体学生信息：\n");
+	printf("学生姓名         学生学号            学生宿舍\n");
+	for(int i=1;i<T;i++)
+	{
+		printf("%-20s%-20s%-5d\n",st[i].S_name,st[i].S_number,st[i].S_Dormitory);
+	}
+	
+}
+
+void Save()     //保存数据； 
+{
+	int flag=0;
+    FILE *fp = fopen("recfile","w");   //以二进制输入； 
+	if(fp==NULL)
+	{
+		printf("打开文件失败\n");
+		exit(0);//结束程序； 
+	} 
+	
+	for(int i=1;i<T;i++)
+	     if(fwrite(&st[i],sizeof(struct Student),1,fp)!=1) 
+	     {
+	     	printf("数据写入错误\n");
+	     	 flag=1;
+	     	 exit(0);
+		 }
+	if(flag)
+	   printf("数据写入成功\n");
+	   
+	   fclose(fp);
+}
+
+void Load()    //加载读入文件； 
+{
+    FILE *fp = fopen("recfile","r");
+    if(fp==NULL)
+	{
+		printf("打开文件失败\n");
+		exit(0);//结束程序； 
+	} 
+	while(!feof(fp))
+	fread(&st[T++],sizeof(struct Student),1,fp);
+	 printf("数据加载成功\n");
+	 T--;
+	fclose(fp);
+}
+
+void Exit()
+{
+	Save();
+	exit(0);
+}
+
+void Menu()
+{
+	printf("                           宿舍管理                              \n");
+	printf("*****************************************************************\n");
+    printf("1.添加学生信息                          7.按照寝室号从小到大排序 \n");
+	printf("2.修改学生信息                          8.按照学号从小到大排序   \n");
+	printf("3.删除学生信息                          9.按照名字号从小到大排序 \n");
+	printf("4.按照姓名查询                          10.展示                  \n");
+	printf("5.按照寝室号查询                        11.保存                  \n");
+	printf("6.按照学号查询                          12.加载                  \n");
+	printf("13.退出程序                             14.emmm                  \n");
+	printf("*****************************************************************\n");
+}
+
+void emm()
+{
+	printf("单纯的想让界面整齐些       QAQ \n");
+}
+
+int main()
+{
+	int i;
+	Student S;
+	Menu();
+    do
+    {
+    	scanf("%d",&i);
+    	switch(i)
+    	{
+    		case 1:Add();break;
+    		case 2:Modify();break;
+    		case 3:Delete();break;
+    		case 4:NInquire();break;
+    		case 5:DInquire();break;
+    		case 6:NUInquire();break;
+    		case 7:Nsort();break;
+    		case 8:Dsort();break;
+    		case 9:NUsort();break;
+    		case 10:Show();break;
+    		case 11:Save();break;
+    		case 12:Load();break;
+    		case 13:Exit();break;
+    		case 14:emm();break;
+    		default:printf("选择错误：请在选项之间选择\n");break;
+		}
+	}while(i<=14);
+}
