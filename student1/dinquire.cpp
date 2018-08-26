@@ -20,15 +20,15 @@ DInquire::~DInquire()
 
 void DInquire::on_pushButton_clicked()
 {
-    QString dnumber = ui->lineEdit->text();
+    QString swdnumber = ui->lineEdit->text();
     ui->textBrowser->clear();
 
     QString name;
     QString number;
     QString sdnumber;
 
-    QString b="姓名             学号             宿舍";
-    ui->textBrowser->append(b);
+    QString f="姓名             学号             宿舍";
+    ui->textBrowser->append(f);
 
     for (int i = 1; i<t; i++)
     {
@@ -53,21 +53,22 @@ void DInquire::on_pushButton_clicked()
 
     qint16 low=1;
     qint16 hight=t-1;
-    if((dnumber>=st[low].dnumber)&&(dnumber<=st[hight].dnumber))
+    ui->textBrowser->append(f);
+    if((swdnumber>=st[low].dnumber)&&(swdnumber<=st[hight].dnumber))
     {
        while(low<=hight)
           {
              qint16 mid=(low+hight)/2;
-             if(dnumber==st[mid].dnumber)
+             if(swdnumber==st[mid].dnumber)
              {
                 QString a=st[mid].name;
                 QString b=st[mid].number;
                 QString c=st[mid].dnumber;
-                QString d=a+"             "+b+"             "+c;
+                QString d= c+"             "+b+"             "+a;
                 ui->textBrowser->append(d);
                 break;
               }
-             else if(dnumber>st[mid].dnumber) low=mid+1;
+             else if(swdnumber>st[mid].dnumber) low=mid+1;
                else hight=mid-1;
            }
     }

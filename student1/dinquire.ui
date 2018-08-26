@@ -46,7 +46,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>宿舍：</string>
+    <string>姓名：</string>
    </property>
   </widget>
   <widget class="QTextBrowser" name="textBrowser">

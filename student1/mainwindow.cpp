@@ -24,9 +24,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->action_4,SIGNAL(triggered()),this,SLOT(actions_4()));
     connect(ui->action_5,SIGNAL(triggered()),this,SLOT(actions_5()));
     connect(ui->action_6,SIGNAL(triggered()),this,SLOT(actions_6()));
-    connect(ui->action_7,SIGNAL(triggered()),this,SLOT(actions_7()));
+    connect(ui->action_9,SIGNAL(triggered()),this,SLOT(actions_7()));
     connect(ui->action_8,SIGNAL(triggered()),this,SLOT(actions_8()));
-    connect(ui->action_9,SIGNAL(triggered()),this,SLOT(actions_9()));
+    connect(ui->action_7,SIGNAL(triggered()),this,SLOT(actions_9()));
     connect(ui->menu_4->menuAction(),SIGNAL(triggered()),this,SLOT(menu_4()));
     connect(ui->menu_5->menuAction(),SIGNAL(triggered()),this,SLOT(menu_5()));
     //connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(on_pushButton_2_clicked()));
@@ -71,35 +71,35 @@ void MainWindow::actions_3()
     shan->show();
 }
 
-void MainWindow::actions_4()
+void MainWindow::actions_6()  //按姓名；
 {
-        QString name;
-        QString number;
-        QString sdnumber;
+    QString name;
+    QString number;
+    QString sdnumber;
 
-        for (int i = 1; i<t; i++)
+    for (int i = 1; i<t; i++)
+    {
+        for (int j = i; j<t; j++)
         {
-            for (int j = i; j<t; j++)
+            if (st[i].name>st[j].name)
             {
-                if (st[i].name>st[j].name)
-                {
-                    name= st[i].name;
-                    number= st[i].number;
-                    sdnumber = st[i].dnumber;
+                name= st[i].name;
+                number= st[i].number;
+                sdnumber = st[i].dnumber;
 
-                    st[i].name= st[j].name;
-                    st[i].number= st[j].number;
-                    st[i].dnumber= st[j].dnumber;
+                st[i].name= st[j].name;
+                st[i].number= st[j].number;
+                st[i].dnumber= st[j].dnumber;
 
-                    st[j].name= name;
-                    st[j].number= number;
-                    st[j].dnumber = sdnumber;
-                }
+                st[j].name= name;
+                st[j].number= number;
+                st[j].dnumber = sdnumber;
             }
         }
+    }
 }
 
-void MainWindow::actions_5()
+void MainWindow::actions_5()          //按学号
 {
         QString name;
         QString number;
@@ -127,7 +127,7 @@ void MainWindow::actions_5()
         }
 }
 
-void MainWindow::actions_6()
+void MainWindow::actions_4()                  //按宿舍；
 {
         QString name;
         QString number;
@@ -216,7 +216,7 @@ void MainWindow::on_pushButton_2_clicked()
         QString name=st[i].name;
         QString number=st[i].number;
         QString dnumber= st[i].dnumber;
-        QString a=name+"             "+number+"             "+dnumber;
+        QString a=dnumber+"             "+number+"             "+name;
         ui->textBrowser->append(a);
     }
 

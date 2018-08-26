@@ -23,8 +23,8 @@ void NInquire::on_pushButton_clicked()
     QString sname=ui->lineEdit->text();
     ui->textBrowser->clear();
 
-    QString b="姓名             学号             宿舍";
-    ui->textBrowser->append(b);
+    QString f="姓名             学号             宿舍";
+    ui->textBrowser->append(f);
 
     QString name;
     QString number;
@@ -63,7 +63,7 @@ void NInquire::on_pushButton_clicked()
                 QString a=st[mid].name;
                 QString b=st[mid].number;
                 QString c=st[mid].dnumber;
-                QString d=a+"             "+b+"             "+c;
+                QString d=c+"             "+b+"             "+a;
                 ui->textBrowser->append(d);
                 break;
               }
