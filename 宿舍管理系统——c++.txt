@@ -5,61 +5,61 @@
 #include <String>
 #include <iostream>
 #include <algorithm>
-#include <fstream> //ÎÄ¼şÁ÷Í·ÎÄ¼ş¡¶¡¶
+#include <fstream> //æ–‡ä»¶æµå¤´æ–‡ä»¶
 using namespace std;
 #define M 10000
 
-int T = 1;   //×ÜÈËÊı£» 
+int T = 1;   //æ€»äººæ•°ï¼› 
 
-struct Student  //Ñ§ÉúµÄ½á¹¹Ìå£»
+struct Student  //å­¦ç”Ÿçš„ç»“æ„ä½“ï¼›
 {
 	string S_name;
 	string S_number;
 	int S_Dormitory;
 }st[M];
 
-void judge(Student S, int t)               //²éÑ¯Ñ§ºÅÊÇ·ñÖØ¸´£» 
+void judge(Student S, int t)               //æŸ¥è¯¢å­¦å·æ˜¯å¦é‡å¤ï¼› 
 {
 	//if(t>=2)
 	for (int i = 1; i <= T - 1; i++)
 		if (st[i].S_number==st[t].S_number)
 		{
-			printf("Ñ§ºÅÊäÈë´íÎó,ÇëÖØĞÂÊäÈë\n");
-			printf("ÊäÈëÑ§ºÅ£º");
+			printf("å­¦å·è¾“å…¥é”™è¯¯,è¯·é‡æ–°è¾“å…¥\n");
+			printf("è¾“å…¥å­¦å·ï¼š");
 			cin>>st[i].S_number;
 		}
 }
 
-void Add()                           //Ìí¼ÓÑ§ÉúĞÅÏ¢£» 
+void Add()                           //æ·»åŠ å­¦ç”Ÿä¿¡æ¯ï¼› 
 {
 	char P = 'y';
 	while (P == 'y')
 	{
-		printf("ÇëÊäÈëÑ§ÉúĞÕÃû£º");
+		printf("è¯·è¾“å…¥å­¦ç”Ÿå§“åï¼š");
 		cin>>st[T].S_name;
 		getchar();
 
-		printf("ÇëÊäÈëÑ§ÉúÑ§ºÅ£º");
+		printf("è¯·è¾“å…¥å­¦ç”Ÿå­¦å·ï¼š");
 		cin>>st[T].S_number;
 		judge(st[T], T);
 		getchar();
 
-		printf("ÇëÊäÈëËŞÉáºÅ£º");
+		printf("è¯·è¾“å…¥å®¿èˆå·ï¼š");
 		cin>>st[T].S_Dormitory;
 		getchar();
 
 		T++;
-		printf("ÊÇ·ñÒª¼ÌĞøÌí¼Ó£ºy/n  \n");
+		printf("æ˜¯å¦è¦ç»§ç»­æ·»åŠ ï¼šy/n  \n");
 		cin>>P;
 		getchar();
 	}
 }
 
-void Modify()            //ĞŞ¸ÄĞÅÏ¢ 
+void Modify()            //ä¿®æ”¹ä¿¡æ¯ 
 {
 	int flag = 0;
 	string number;
-	printf("ÊäÈëÑ§ÉúÑ§ºÅ£º");
+	printf("è¾“å…¥å­¦ç”Ÿå­¦å·ï¼š");
 	cin>>number;
 	getchar();
 	for (int i = 1; i<T; i++) {
@@ -68,38 +68,38 @@ void Modify()            //ĞŞ¸ÄĞÅÏ¢
 	}
 
 	if (!flag)
-		printf("ÄãÒªĞŞ¸ÄµÄÑ§Éú²»ÔÚ´ËÁĞ\n");
+		printf("ä½ è¦ä¿®æ”¹çš„å­¦ç”Ÿä¸åœ¨æ­¤åˆ—\n");
 	else
 	{
-		printf("ĞÂĞÅÏ¢ÈçÏÂ£º\n");
+		printf("æ–°ä¿¡æ¯å¦‚ä¸‹ï¼š\n");
 
-		printf("ÇëÊäÈëÑ§ÉúĞÕÃû£º");
+		printf("è¯·è¾“å…¥å­¦ç”Ÿå§“åï¼š");
 		cin>>st[flag].S_name;
 		getchar();
 
-		printf("ÇëÊäÈëÑ§ÉúÑ§ºÅ£º");
+		printf("è¯·è¾“å…¥å­¦ç”Ÿå­¦å·ï¼š");
 		cin >> st[flag].S_number;
 		getchar();
 
-		printf("ÇëÊäÈëËŞÉáºÅ£º");
+		printf("è¯·è¾“å…¥å®¿èˆå·ï¼š");
 		cin >> st[flag].S_Dormitory;
 		getchar();
 	}
 	printf("\n");
 }
 
-void Delete()            //É¾³ıĞÅÏ¢ 
+void Delete()            //åˆ é™¤ä¿¡æ¯ 
 {
 	int flag = 0;
 	string number;
-	printf("ÇëÊäÈëÄãÒªÉ¾³ıÑ§ÉúµÄÑ§ºÅ£º");
+	printf("è¯·è¾“å…¥ä½ è¦åˆ é™¤å­¦ç”Ÿçš„å­¦å·ï¼š");
 	cin >> number;
 	getchar();
 	for (int i = 1; i <= T; i++)
 		if (st[i].S_number==number)
 			flag = i;
 	if (!flag)
-		printf("ÄãÒªÉ¾³ıµÄÑ§Éú²»ÔÚ´ËÁĞ\n");
+		printf("ä½ è¦åˆ é™¤çš„å­¦ç”Ÿä¸åœ¨æ­¤åˆ—\n");
 	else
 	{
 		for (int i = flag; i<T; i++)
@@ -110,16 +110,15 @@ void Delete()            //É¾³ıĞÅÏ¢
 			st[i].S_Dormitory = st[j].S_Dormitory;
 		}
 		T--;
-		printf("É¾³ı³É¹¦£¡\n");
+		printf("åˆ é™¤æˆåŠŸï¼\n");
 	}
 }
 
-void Nsort()                //°´ĞÕÃûÅÅĞò£» 
+void Nsort()                //æŒ‰å§“åæ’åºï¼› 
 {
 	string name;
 	string number;
 	int t;
-
 	for (int i = 1; i<T; i++)
 	{
 		for (int j = i; j<T; j++)
@@ -142,7 +141,7 @@ void Nsort()                //°´ĞÕÃûÅÅĞò£»
 	}
 }
 
-void Dsort()           //°´ËŞÉáÅÅĞò£» 
+void Dsort()           //æŒ‰å®¿èˆæ’åºï¼› 
 {
 	string name;
 	string number;
@@ -170,7 +169,7 @@ void Dsort()           //°´ËŞÉáÅÅĞò£»
 	}
 }
 
-void NUsort()              //°´Ñ§ºÅÅÅĞò£» 
+void NUsort()              //æŒ‰å­¦å·æ’åºï¼› 
 {
 	string name;
 	string number;
@@ -199,19 +198,19 @@ void NUsort()              //°´Ñ§ºÅÅÅĞò£»
 }
 
 
-void NInquire()      //°´ĞÕÃû²éÕÒ£¨¶ş·Ö£© 
+void NInquire()      //æŒ‰å§“åæŸ¥æ‰¾ï¼ˆäºŒåˆ†ï¼‰ 
 {
 	int low = 1;
 	int high = T - 1;
 	int flag = 0;
 	int mid;
 	string name;
-	Nsort();       //°´ĞÕÃû´ÓĞ¡µ½´óÅÅĞò£» 
-	printf("ÇëÊäÈëÒª²éÕÒÑ§ÉúµÄĞÕÃû£º");
+	Nsort();       //æŒ‰å§“åä»å°åˆ°å¤§æ’åºï¼› 
+	printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾å­¦ç”Ÿçš„å§“åï¼š");
 	cin >> name;
 	getchar();
 
-	printf("Ñ§ÉúĞÕÃû         Ñ§ÉúÑ§ºÅ            Ñ§ÉúËŞÉá\n");
+	printf("å­¦ç”Ÿå§“å         å­¦ç”Ÿå­¦å·            å­¦ç”Ÿå®¿èˆ\n");
 	if (name>= st[low].S_name && name <= st[high].S_name)
 	{
 		while (low <= high)
@@ -231,23 +230,23 @@ void NInquire()      //°´ĞÕÃû²éÕÒ£¨¶ş·Ö£©
 	}
 	if (!flag)
 	{
-		printf("²éÑ°Ê§°Ü£¬ÁĞ±íÖĞÃ»ÓĞ¸ÃÑ§ÉúµÄĞÅÏ¢\n");
+		printf("æŸ¥å¯»å¤±è´¥ï¼Œåˆ—è¡¨ä¸­æ²¡æœ‰è¯¥å­¦ç”Ÿçš„ä¿¡æ¯\n");
 	}
 }
 
-void DInquire()      //°´ËŞÉá²éÕÒ£¨¶ş·Ö£©£» 
+void DInquire()      //æŒ‰å®¿èˆæŸ¥æ‰¾ï¼ˆäºŒåˆ†ï¼‰ï¼› 
 {
 	int low = 1;
 	int high = T - 1;
 	int flag = 0;
 	int mid;
 	int Dormitory;
-	Dsort();               //°´ËŞÉáÖØĞ¡µ½´óÅÅĞò£» 
+	Dsort();               //æŒ‰å®¿èˆé‡å°åˆ°å¤§æ’åºï¼› 
 
-	printf("ÇëÊäÈëÒª²éÑ¯Ñ§ÉúµÄËŞÉáºÅ£º");
+	printf("è¯·è¾“å…¥è¦æŸ¥è¯¢å­¦ç”Ÿçš„å®¿èˆå·ï¼š");
 	cin >> Dormitory;
 
-	printf("Ñ§ÉúĞÕÃû         Ñ§ÉúÑ§ºÅ            Ñ§ÉúËŞÉá\n");
+	printf("å­¦ç”Ÿå§“å         å­¦ç”Ÿå­¦å·            å­¦ç”Ÿå®¿èˆ\n");
 	if (Dormitory >= st[low].S_Dormitory&&Dormitory <= st[high].S_Dormitory)
 	{
 		while (low <= high)
@@ -267,7 +266,7 @@ void DInquire()      //°´ËŞÉá²éÕÒ£¨¶ş·Ö£©£»
 	}
 	if (!flag)
 	{
-		printf("²éÑ°Ê§°Ü£¬ÁĞ±íÖĞÃ»ÓĞ¸ÃÑ§ÉúµÄĞÅÏ¢\n");
+		printf("æŸ¥å¯»å¤±è´¥ï¼Œåˆ—è¡¨ä¸­æ²¡æœ‰è¯¥å­¦ç”Ÿçš„ä¿¡æ¯\n");
 	}
 }
 
@@ -278,13 +277,13 @@ void NUInquire()
 	int flag = 0;
 	int mid;
 	char number[20];
-	NUsort();       //°´Ñ§ºÅ´ÓĞ¡µ½´óÅÅĞò£» 
+	NUsort();       //æŒ‰å­¦å·ä»å°åˆ°å¤§æ’åºï¼› 
 
-	printf("ÇëÊäÈëÒª²éÕÒÑ§ÉúµÄÑ§ºÅ£º");
+	printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾å­¦ç”Ÿçš„å­¦å·ï¼š");
 	cin >> number;
 	getchar();
 
-	printf("Ñ§ÉúĞÕÃû         Ñ§ÉúÑ§ºÅ            Ñ§ÉúËŞÉá\n");
+	printf("å­¦ç”Ÿå§“å         å­¦ç”Ÿå­¦å·            å­¦ç”Ÿå®¿èˆ\n");
 	if (number>= st[low].S_number && number<= st[high].S_number)
 	{
 		while (low <= high)
@@ -304,14 +303,14 @@ void NUInquire()
 	}
 	if (!flag)
 	{
-		printf("²éÑ°Ê§°Ü£¬ÁĞ±íÖĞÃ»ÓĞ¸ÃÑ§ÉúµÄĞÅÏ¢\n");
+		printf("æŸ¥å¯»å¤±è´¥ï¼Œåˆ—è¡¨ä¸­æ²¡æœ‰è¯¥å­¦ç”Ÿçš„ä¿¡æ¯\n");
 	}
 }
 
 void Show()
 {
-	printf("È«ÌåÑ§ÉúĞÅÏ¢£º\n");
-	printf("Ñ§ÉúĞÕÃû         Ñ§ÉúÑ§ºÅ            Ñ§ÉúËŞÉá\n");
+	printf("å…¨ä½“å­¦ç”Ÿä¿¡æ¯ï¼š\n");
+	printf("å­¦ç”Ÿå§“å         å­¦ç”Ÿå­¦å·            å­¦ç”Ÿå®¿èˆ\n");
 	for (int i = 1; i<T; i++)
 	{
 		cout << st[i].S_name << "         " << st[i].S_number << "         " << st[i].S_Dormitory<<endl;
@@ -319,15 +318,15 @@ void Show()
 
 }
 
-void Save()     //±£´æÊı¾İ£» 
+void Save()     //ä¿å­˜æ•°æ®ï¼› 
 {
 	int flag = 0;
 	ofstream out;
 	out.open("e://ssmd.txt",ios::trunc);  
 	if (!out.is_open())
 	{
-		printf("´ò¿ªÎÄ¼şÊ§°Ü\n");
-		exit(0);//½áÊø³ÌĞò£» 
+		printf("æ‰“å¼€æ–‡ä»¶å¤±è´¥\n");
+		exit(0);//ç»“æŸç¨‹åºï¼› 
 	}
 
 	for (int i = 1; i < T; i++)
@@ -336,18 +335,18 @@ void Save()     //±£´æÊı¾İ£»
 	out.close();
 }
 
-void Load()    //¼ÓÔØ¶ÁÈëÎÄ¼ş£» 
+void Load()    //åŠ è½½è¯»å…¥æ–‡ä»¶ï¼› 
 {
 	ifstream in;
 	in.open("e://ssmd.txt",ios::in);
 	if (!in.is_open())
 	{
-		printf("´ò¿ªÎÄ¼şÊ§°Ü\n");
-		exit(0);//½áÊø³ÌĞò£» 
+		printf("æ‰“å¼€æ–‡ä»¶å¤±è´¥\n");
+		exit(0);//ç»“æŸç¨‹åºï¼› 
 	}
 	while (!in.eof())
 		in >> st[T++].S_name >> st[T].S_number >> st[T].S_Dormitory;
-	printf("Êı¾İ¼ÓÔØ³É¹¦\n");
+	printf("æ•°æ®åŠ è½½æˆåŠŸ\n");
 	T--;
 	in.close();
 }
@@ -360,21 +359,21 @@ void Exit()
 
 void Menu()
 {
-	printf("                           ËŞÉá¹ÜÀí                              \n");
+	printf("                           å®¿èˆç®¡ç†                              \n");
 	printf("*****************************************************************\n");
-	printf("1.Ìí¼ÓÑ§ÉúĞÅÏ¢                          7.°´ÕÕÇŞÊÒºÅ´ÓĞ¡µ½´óÅÅĞò \n");
-	printf("2.ĞŞ¸ÄÑ§ÉúĞÅÏ¢                          8.°´ÕÕÑ§ºÅ´ÓĞ¡µ½´óÅÅĞò   \n");
-	printf("3.É¾³ıÑ§ÉúĞÅÏ¢                          9.°´ÕÕÃû×ÖºÅ´ÓĞ¡µ½´óÅÅĞò \n");
-	printf("4.°´ÕÕĞÕÃû²éÑ¯                          10.Õ¹Ê¾                  \n");
-	printf("5.°´ÕÕÇŞÊÒºÅ²éÑ¯                        11.±£´æ                  \n");
-	printf("6.°´ÕÕÑ§ºÅ²éÑ¯                          12.¼ÓÔØ                  \n");
-	printf("13.ÍË³ö³ÌĞò                             14.emmm                  \n");
+	printf("1.æ·»åŠ å­¦ç”Ÿä¿¡æ¯                          7.æŒ‰ç…§å¯å®¤å·ä»å°åˆ°å¤§æ’åº \n");
+	printf("2.ä¿®æ”¹å­¦ç”Ÿä¿¡æ¯                          8.æŒ‰ç…§å­¦å·ä»å°åˆ°å¤§æ’åº   \n");
+	printf("3.åˆ é™¤å­¦ç”Ÿä¿¡æ¯                          9.æŒ‰ç…§åå­—å·ä»å°åˆ°å¤§æ’åº \n");
+	printf("4.æŒ‰ç…§å§“åæŸ¥è¯¢                          10.å±•ç¤º                  \n");
+	printf("5.æŒ‰ç…§å¯å®¤å·æŸ¥è¯¢                        11.ä¿å­˜                  \n");
+	printf("6.æŒ‰ç…§å­¦å·æŸ¥è¯¢                          12.åŠ è½½                  \n");
+	printf("13.é€€å‡ºç¨‹åº                             14.emmm                  \n");
 	printf("*****************************************************************\n");
 }
 
 void emm()
 {
-	printf("µ¥´¿µÄÏëÈÃ½çÃæÕûÆëĞ©       QAQ \n");
+	printf("å•çº¯çš„æƒ³è®©ç•Œé¢æ•´é½äº›       QAQ \n");
 }
 
 int main()
@@ -393,15 +392,15 @@ int main()
 		case 4:NInquire(); break;
 		case 5:DInquire(); break;
 		case 6:NUInquire(); break;
-		case 7:Nsort(); break;
-		case 8:Dsort(); break;
-		case 9:NUsort(); break;
+		case 7:Dsort(); break;
+		case 8:NUsort(); break;
+		case 9:Nsort(); break;
 		case 10:Show(); break;
 		case 11:Save(); break;
 		case 12:Load(); break;
 		case 13:Exit(); break;
 		case 14:emm(); break;
-		default:printf("Ñ¡Ôñ´íÎó£ºÇëÔÚÑ¡ÏîÖ®¼äÑ¡Ôñ\n"); break;
+		default:printf("é€‰æ‹©é”™è¯¯ï¼šè¯·åœ¨é€‰é¡¹ä¹‹é—´é€‰æ‹©\n"); break;
 		}
 	} while (i <= 14);
 }
